@@ -46,7 +46,8 @@ public class game extends AppCompatActivity {
         int randomNumber = random.nextInt((9999 - 100) + 1) + 10;
         sonucMetinKutusu.setText("Hi" + randomNumber);
 
-        int rbir, ron, ryüz, rbin, deneme;
+        int rbir, ron, ryüz, rbin, rNum;
+        rNum = randomNumber;
 
         rbir = randomNumber%10;
         randomNumber/=10;
@@ -74,9 +75,10 @@ public class game extends AppCompatActivity {
         kontrolbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int gsayi;
+                int gsayi, gNum;
                 String yazilacakSayi = metinKutusu.getText().toString();
                 gsayi = Integer.valueOf(metinKutusu.getText().toString());
+                gNum = gsayi;
 
                 metinKutusu.getText().clear();
 
@@ -99,24 +101,22 @@ public class game extends AppCompatActivity {
 
                 List<String> yazi =new ArrayList<String>();
 
+                String ciktiYazisi = "";
 
-
-                if(rbir == gbir && ron == gon && ryüz ==gyüz && rbin ==gbin){
-                    sonucMetinKutusu.setText("Doğru sayıyı buldunuz ");
-
+                if(gNum == rNum){
+                    ciktiYazisi +="Doğru sayıyı buldunuz ";
                 }
-
                 else if(rbir == gbir && ron != gon && ryüz !=gyüz && rbin !=gbin){
-                    yazi.add("+1 ");
+                    ciktiYazisi +="+1 ";
                 }
                 else if(rbir != gbir  && ron == gon  && ryüz !=gyüz && rbin !=gbin){
-                    yazi.add("+1 ");
+                    ciktiYazisi +="+1 ";
                 }
                 else if(rbir != gbir&& ron != gon && ryüz ==gyüz && rbin !=gbin){
-                    yazi.add("+1 ");
+                    ciktiYazisi +="+1 ";
                 }
                 else if( ron != gon && ryüz !=gyüz && rbir != gbir && rbin == gbin){
-                    yazi.add("+1 ");
+                    ciktiYazisi +="+1 ";
                 }
                 else{
                     for(int i =0 ; i<4; i++){
@@ -126,20 +126,12 @@ public class game extends AppCompatActivity {
                             }
                         }
                     }
+                    for(int i = 0; i< yazi.size(); i++){
+                        ciktiYazisi += " " + yazi.get(i);
+                    }
                 }
 
-
-                String denemeyazi = "";
-
-                for(int i = 0; i< yazi.size(); i++){
-                    denemeyazi += " " + yazi.get(i);
-                }
-                sonucMetinKutusu.setText(yazilacakSayi + denemeyazi);
-
-
-
-
-
+                sonucMetinKutusu.setText(ciktiYazisi);
 
             }
         });
