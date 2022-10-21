@@ -39,16 +39,29 @@ public class game extends AppCompatActivity {
         });
 
 
-
-
-
-        Random random = new Random();
-        int randomNumber = random.nextInt((9999 - 100) + 1) + 10;
-        sonucMetinKutusu.setText("Hi" + randomNumber);
-
         int rbir, ron, ryüz, rbin, rNum;
-        rNum = randomNumber;
+        int randomNumber = rastgele();
 
+        if(randomNumber<1000 || randomNumber>9999){
+            randomNumber = rastgele();
+            rbir = randomNumber%10;
+            randomNumber/=10;
+            ron = randomNumber%10;
+            randomNumber/=10;
+            ryüz = randomNumber%10;
+            randomNumber/=10;
+            rbin = randomNumber%10;
+
+            if(rbir == ron || rbir == ryüz|| rbir == rbin || ron == ryüz|| ron == rbin || ryüz == rbin){
+                randomNumber = rastgele();
+            }
+
+        }
+        sonucMetinKutusu.setText("Hi " + randomNumber);
+
+
+
+        rNum = randomNumber;
         rbir = randomNumber%10;
         randomNumber/=10;
         ron = randomNumber%10;
@@ -103,38 +116,61 @@ public class game extends AppCompatActivity {
 
                 String ciktiYazisi = "";
 
+
+
                 if(gNum == rNum){
                     ciktiYazisi +="Doğru sayıyı buldunuz ";
                 }
-                else if(rbir == gbir && ron != gon && ryüz !=gyüz && rbin !=gbin){
-                    ciktiYazisi +="+1 ";
-                }
-                else if(rbir != gbir  && ron == gon  && ryüz !=gyüz && rbin !=gbin){
-                    ciktiYazisi +="+1 ";
-                }
-                else if(rbir != gbir&& ron != gon && ryüz ==gyüz && rbin !=gbin){
-                    ciktiYazisi +="+1 ";
-                }
-                else if( ron != gon && ryüz !=gyüz && rbir != gbir && rbin == gbin){
-                    ciktiYazisi +="+1 ";
-                }
-                else{
-                    for(int i =0 ; i<4; i++){
-                        for(int j=0; j<4; j++){
+                else {
+                    ciktiYazisi += "Sayınız: ";
+                    ciktiYazisi += yazilacakSayi;
+
+                    int arti=0, eksi=0;
+
+
+
+                    for (int i = 0; i < 4; i++) {
+                        for (int j = 0; j < 4; j++) {
                             if(listGirilen.get(i) == listRandom.get(j)){
-                                yazi.add("-1 ");
+                                if(i == j){
+                                    arti += 1;
+                                }
+                                else{
+                                    eksi +=1;
+                                }
+
+
                             }
+
+
                         }
                     }
-                    for(int i = 0; i< yazi.size(); i++){
-                        ciktiYazisi += " " + yazi.get(i);
-                    }
-                }
 
+                    ciktiYazisi += "+" + arti + "-"+ eksi;
+
+                }
                 sonucMetinKutusu.setText(ciktiYazisi);
 
             }
         });
+
+
+    }
+
+    static int rastgele(){
+        Random random = new Random();
+
+        int randomNumber= random.nextInt(9000 ) + 1000;
+        String ransomNumberS = String.valueOf(randomNumber);
+        for(int i = 0; i<4;i++){
+            for(int j =i+1; j<4;j++){
+                if(ransomNumberS.charAt(i)== ransomNumberS.charAt(j)){
+                    randomNumber = rastgele();
+
+                }
+            }
+        }
+        return randomNumber;
 
 
     }
