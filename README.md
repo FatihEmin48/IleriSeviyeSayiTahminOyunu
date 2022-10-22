@@ -1,7 +1,8 @@
 # IleriSeviyeSayiTahminOyunu
 İleri seviye sayı tahmin oyunu, mobil uygulama.
 
-![circleLogo](https://user-images.githubusercontent.com/55911470/196926744-8c732e12-ba5b-41ac-84b6-f1f39f1ecc6c.png)
+![game](https://user-images.githubusercontent.com/55911470/197335235-87a03712-4573-4c34-a632-07382cce04ab.png)
+
 
 (Logo yapay zeka tarafından tasarlandı)
 
